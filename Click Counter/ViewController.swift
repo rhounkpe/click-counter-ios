@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     var count = 0
     var label: UILabel!
+    // var decrementLabel: UILabel
     
 
     override func viewDidLoad() {
@@ -28,17 +29,30 @@ class ViewController: UIViewController {
         
         // button
         let button = UIButton()
-        button.frame = CGRect(x: 150, y: 250, width: 60, height: 60)
-        button.setTitle("Click", for: .normal)
+        button.frame = CGRect(x: 150, y: 250, width: 160, height: 160)
+        button.setTitle("Increment", for: .normal)
         button.setTitleColor(UIColor.blue, for: .normal)
         
         view.addSubview(button)
         
         button.addTarget(self, action: #selector(ViewController.incrementCount), for: UIControl.Event.touchUpInside)
+        
+        let decrementButton = UIButton()
+        decrementButton.frame = CGRect(x: 150, y: 350, width: 180, height: 180)
+        decrementButton.setTitle("Decrement", for: .normal)
+        decrementButton.setTitleColor(UIColor.red, for: .normal)
+        view.addSubview(decrementButton)
+        decrementButton.addTarget(self, action: #selector(ViewController.decrementCount), for: UIControl.Event.touchUpInside)
+        
     }
     
     @objc func incrementCount() {
         self.count += 1
+        self.label.text = "\(self.count)"
+    }
+    
+    @objc func decrementCount() {
+        self.count -= 1
         self.label.text = "\(self.count)"
     }
 
